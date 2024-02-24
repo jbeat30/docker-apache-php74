@@ -4,7 +4,7 @@ FROM php:7.4-apache
 # Install modules
 RUN apt-get update && \
     apt-get -y dist-upgrade && \
-    apt-get -y install apt-utils libonig-dev libpq-dev && \
+    apt-get -y install apt-utils libonig-dev && \
     docker-php-ext-install pdo_mysql mysqli mbstring gettext
 
 # Install Composer
