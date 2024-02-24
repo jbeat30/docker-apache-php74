@@ -1,0 +1,57 @@
+# Dockerized PHP 7.4 with Apache
+
+This Dockerfile sets up a PHP 7.4 environment with Apache, suitable for local development.
+You can find the pre-built Docker image on Docker Hub at [jbeat/apache-php](https://hub.docker.com/repository/docker/jbeat/apache-php/general).
+
+## Usage
+
+1. **Pull the Docker image:**
+
+    ```bash
+    docker pull jbeat/apache-php:7.4.0
+    ```
+
+2. **Run the Docker container:**
+
+   ```bash
+    docker run -d --name [container-name] -p 8080:80 -v $(pwd):/var/www/html jbeat/apache-php56:latest
+   ```
+
+   Replace `[container-name]` with a desired name for your container and
+   `8080` with the desired host port. The `-v` option mounts the current
+   directory (`$(pwd)`) to the container's `/var/www/html` directory,
+   allowing you to easily sync your local code with the container.
+
+
+3. **Access the PHP application:**
+
+   Open your web browser and go to [http://localhost:8080](http://localhost:8080) (or the port you specified).
+
+## Features
+
+- Apache configured for local development.
+- PHP version: 7.4
+- Apache configured with rewrite module (enabled) and mpm_prefork.
+- PHP extensions: mysqli, pdo_mysql, gettext, mbstring.
+- Timezone set to Asia/Seoul.
+- Short tags are enabled.
+- Composer is installed for managing PHP dependencies.
+- Options FollowSymLinks and AllowOverride All are set in the Apache configuration.
+- Require all granted Give all users full access to the contents of the directory for development environment.
+
+## Author
+
+This Dockerfile is maintained by `jbeat`.
+
+## Base Image
+
+This Docker image is based on the official `php:7.4-apache` image.
+
+## Apache Configuration
+
+The Apache configuration is customized for local development.
+
+## Cleanup
+
+To minimize the image size, unnecessary files are removed during the Docker image build
+
