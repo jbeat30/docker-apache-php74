@@ -11,10 +11,28 @@ You can find the pre-built Docker image on Docker Hub at [jbeat/apache-php](http
     docker pull jbeat/apache-php:7.4.0
     ```
 
-2. **Run the Docker container:**
+2. **Selective type docker-compose.yaml:**
+
+   ```yaml
+   version: '3'
+   services:
+    webserver:
+    image: jbeat/apache-php:7.4.0
+    container_name: container-name
+    ports:
+      - "8080:80"
+    volumes:
+      - ".:/var/www/html"
+   ```
+
+     ```bash
+      docker-compose up -d --build
+     ```
+
+3. **Selective type Run the Docker container:**
 
    ```bash
-    docker run -d --name [container-name] -p 8080:80 -v $(pwd):/var/www/html jbeat/apache-php56:latest
+    docker run -d --name [container-name] -p 8080:80 -v $(pwd):/var/www/html jbeat/apache-php:7.4.0
    ```
 
    Replace `[container-name]` with a desired name for your container and
@@ -23,7 +41,7 @@ You can find the pre-built Docker image on Docker Hub at [jbeat/apache-php](http
    allowing you to easily sync your local code with the container.
 
 
-3. **Access the PHP application:**
+4. **Access the PHP application:**
 
    Open your web browser and go to [http://localhost:8080](http://localhost:8080) (or the port you specified).
 
